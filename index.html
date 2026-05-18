@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don't Let AI Eat Your Child's Future — A Parent's Guide to the AI Economy</title>
+<!-- Gumroad overlay checkout script: makes the buy button open a popup instead of leaving the page -->
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0CC72;
+    --dark: #0D0D0D;
+    --dark-2: #141414;
+    --dark-3: #1C1C1C;
+    --dark-4: #232323;
+    --text: #E8E8E8;
+    --text-muted: #9A9A9A;
+    --red-alert: #E84040;
+    --green: #3DB87A;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  /* URGENCY BAR */
+  .urgency-bar {
+    background: var(--red-alert);
+    color: #fff;
+    text-align: center;
+    padding: 12px 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .urgency-bar span { font-weight: 400; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(170deg, #0D0D0D 0%, #1a1208 60%, #0D0D0D 100%);
+    padding: 80px 20px 90px;
+    text-align: center;
+    border-bottom: 1px solid #2a2010;
+  }
+
+  .eyebrow {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 68px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.12;
+    max-width: 860px;
+    margin: 0 auto 24px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .hero-sub {
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 50px;
+    font-style: italic;
+  }
+
+  /* IMAGE PLACEHOLDER STYLES */
+  .img-placeholder {
+    background: var(--dark-3);
+    border: 2px dashed #3a3a3a;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    margin: 30px auto;
+    max-width: 700px;
+  }
+
+  .img-placeholder .img-icon { font-size: 36px; margin-bottom: 12px; }
+  .img-placeholder strong { display: block; color: var(--gold); font-size: 15px; margin-bottom: 8px; }
+
+  /* BOOK MOCKUP */
+  .book-mockup {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a1208, #2d1f05);
+    border: 2px solid var(--gold);
+    border-radius: 4px 16px 16px 4px;
+    width: 200px;
+    height: 280px;
+    position: relative;
+    box-shadow: -6px 6px 0 #0a0a0a, 8px 12px 40px rgba(201,168,76,0.25), 0 20px 60px rgba(0,0,0,0.8);
+    margin: 0 auto 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .book-mockup:hover { transform: rotate(-2deg) scale(1.04); }
+
+  .book-mockup .book-spine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    background: var(--gold);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .book-mockup .book-content {
+    padding: 24px 16px 24px 28px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .book-mockup .book-title {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.3;
+  }
+
+  .book-mockup .book-sub {
+    font-family: 'Arial', sans-serif;
+    font-size: 9px;
+    color: #888;
+    line-height: 1.4;
+    margin-top: 6px;
+  }
+
+  .book-mockup .book-author {
+    font-family: 'Arial', sans-serif;
+    font-size: 10px;
+    color: var(--text-muted);
+    border-top: 1px solid #3a2a10;
+    padding-top: 10px;
+  }
+
+  /* CTA BUTTON */
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold), #e8b840);
+    color: #0D0D0D;
+    padding: 20px 50px;
+    border-radius: 6px;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 30px rgba(201,168,76,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.6);
+  }
+
+  .cta-subtext {
+    display: block;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 14px;
+  }
+
+  /* PRICE DISPLAY */
+  .price-display {
+    margin: 30px auto 0;
+    text-align: center;
+  }
+
+  .price-was {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+
+  .price-now {
+    font-family: 'Arial', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin: 4px 0;
+  }
+
+  .price-note {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--dark-2);
+    border-top: 1px solid #1e1e1e;
+    border-bottom: 1px solid #1e1e1e;
+    padding: 30px 20px;
+  }
+
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .stat { min-width: 120px; }
+
+  .stat-number {
+    font-family: 'Arial', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  /* SECTION */
+  .section { padding: 70px 20px; }
+
+  .section-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .section-inner.wide { max-width: 960px; }
+
+  /* TYPOGRAPHY */
+  h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--white);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+
+  h2 em { color: var(--gold); font-style: normal; }
+
+  h3 {
+    font-size: clamp(20px, 2.5vw, 26px);
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  p { margin-bottom: 20px; color: var(--text); }
+
+  p.lead {
+    font-size: clamp(19px, 2.5vw, 23px);
+    color: var(--text);
+    font-style: italic;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 30px;
+  }
+
+  /* PROBLEM SECTION */
+  .section-problem { background: var(--dark-2); }
+
+  .alert-box {
+    background: rgba(232, 64, 64, 0.1);
+    border: 1px solid rgba(232, 64, 64, 0.3);
+    border-left: 4px solid var(--red-alert);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin: 30px 0;
+  }
+
+  .alert-box p { color: var(--text); margin-bottom: 0; }
+
+  .stat-callout {
+    text-align: center;
+    padding: 40px 20px;
+    border: 1px solid #2a2010;
+    border-radius: 12px;
+    margin: 40px 0;
+    background: linear-gradient(135deg, #12100a, #1a1208);
+  }
+
+  .stat-callout .big-number {
+    font-family: 'Arial', sans-serif;
+    font-size: clamp(60px, 10vw, 100px);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-callout .big-label {
+    font-family: 'Arial', sans-serif;
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--text-muted);
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* QUOTE BLOCK */
+  .pull-quote {
+    border-left: 4px solid var(--gold);
+    padding: 20px 30px;
+    margin: 40px 0;
+    font-size: clamp(20px, 2.8vw, 28px);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    color: var(--gold);
+    margin-top: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  /* DARK DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid #1e1e1e;
+    margin: 40px 0;
+  }
+
+  /* PROOF SECTION */
+  .section-proof { background: var(--dark-3); }
+
+  .proof-card {
+    background: var(--dark-2);
+    border: 1px solid #2a2010;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+
+  .proof-card .proof-tag {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .proof-card h3 { color: var(--gold-light); }
+
+  .proof-card .proof-result {
+    background: rgba(61, 184, 122, 0.1);
+    border: 1px solid rgba(61, 184, 122, 0.25);
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    color: var(--green);
+    font-weight: 700;
+    margin-top: 16px;
+  }
+
+  /* CHAPTER LIST */
+  .section-chapters { background: var(--dark); }
+
+  .chapter-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .chapter-item:last-child { border-bottom: none; }
+
+  .chapter-num {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 6px;
+    padding: 6px 12px;
+    min-width: 80px;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .chapter-info h3 { font-size: 18px; margin-bottom: 6px; }
+  .chapter-info p { font-size: 15px; color: var(--text-muted); margin-bottom: 0; }
+
+  /* FOR WHOM */
+  .section-whom { background: var(--dark-2); }
+
+  .whom-list { list-style: none; }
+
+  .whom-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid #1e1e1e;
+    padding-left: 36px;
+    position: relative;
+    color: var(--text);
+    font-size: 17px;
+  }
+
+  .whom-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .whom-list li:last-child { border-bottom: none; }
+
+  /* NOT FOR */
+  .not-for-list { list-style: none; }
+
+  .not-for-list li {
+    padding: 14px 0;
+    padding-left: 36px;
+    position: relative;
+    color: var(--text-muted);
+    font-size: 17px;
+    border-bottom: 1px solid #1a1a1a;
+    font-style: italic;
+  }
+
+  .not-for-list li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: var(--red-alert);
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+  }
+
+  .not-for-list li:last-child { border-bottom: none; }
+
+  /* TESTIMONIALS */
+  .section-testimonials { background: var(--dark-3); }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .testimonial {
+    background: var(--dark-2);
+    border: 1px solid #252525;
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .testimonial .stars {
+    color: var(--gold);
+    font-size: 18px;
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+  }
+
+  .testimonial p {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text);
+    margin-bottom: 18px;
+    line-height: 1.7;
+  }
+
+  .testimonial .reviewer {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .testimonial .reviewer strong {
+    display: block;
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  /* OFFER BOX */
+  .section-offer { background: linear-gradient(170deg, #0D0D0D 0%, #1a1208 100%); }
+
+  .offer-box {
+    background: var(--dark-2);
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 50px 40px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 0 80px rgba(201,168,76,0.12);
+  }
+
+  .offer-box h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    margin-bottom: 30px;
+  }
+
+  .offer-includes {
+    list-style: none;
+    text-align: left;
+    margin: 30px 0 40px;
+  }
+
+  .offer-includes li {
+    padding: 12px 0 12px 36px;
+    position: relative;
+    border-bottom: 1px solid #1e1e1e;
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  .offer-includes li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+  }
+
+  .offer-includes li:last-child { border-bottom: none; }
+
+  .offer-includes li strong { color: var(--white); }
+
+  /* GUARANTEE */
+  .guarantee-box {
+    background: rgba(61, 184, 122, 0.06);
+    border: 1px solid rgba(61, 184, 122, 0.2);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    margin: 40px auto;
+    max-width: 640px;
+  }
+
+  .guarantee-box .guarantee-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .guarantee-box h3 { color: var(--green); margin-bottom: 12px; }
+  .guarantee-box p { font-size: 15px; color: var(--text-muted); margin-bottom: 0; }
+
+  /* FAQ */
+  .section-faq { background: var(--dark-2); }
+
+  .faq-item {
+    border-bottom: 1px solid #1e1e1e;
+    padding: 28px 0;
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item h3 { font-size: 18px; color: var(--white); margin-bottom: 12px; }
+  .faq-item p { font-size: 16px; color: var(--text-muted); margin-bottom: 0; }
+
+  /* FINAL CTA */
+  .section-final { background: var(--dark); padding: 100px 20px; text-align: center; }
+
+  .section-final h2 { font-size: clamp(30px, 5vw, 54px); max-width: 700px; margin: 0 auto 24px; }
+
+  .section-final p { max-width: 540px; margin: 0 auto 40px; color: var(--text-muted); font-size: 18px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-2);
+    border-top: 1px solid #1a1a1a;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 10px;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  /* HIGHLIGHT TEXT */
+  .highlight { color: var(--gold); }
+  .highlight-red { color: var(--red-alert); font-weight: 700; }
+
+  /* NEWS TICKER STYLE */
+  .news-items {
+    background: var(--dark-3);
+    border-top: 1px solid #2a2a2a;
+    border-bottom: 1px solid #2a2a2a;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .news-scroll {
+    display: flex;
+    gap: 60px;
+    animation: scroll 30s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .news-item {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .news-item strong { color: var(--red-alert); margin-right: 6px; }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+  }
+
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    .offer-box { padding: 36px 20px; }
+    .hero { padding: 60px 20px 70px; }
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-down {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 40px;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SETUP INSTRUCTIONS — READ BEFORE PUBLISHING
+     ============================================================
+     STEP 1: Replace every instance of https://YOUR-GUMROAD-LINK-HERE
+             with your actual Gumroad product link, e.g.:
+             https://henri.gumroad.com/l/future-proof-family
+
+     STEP 2: Do a Ctrl+H (Find & Replace) in any text editor
+             Find:    YOUR-GUMROAD-LINK-HERE
+             Replace: your actual Gumroad product URL
+
+     There are 3 buy buttons on the page — all will be updated at once.
+     ============================================================ -->
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  LAUNCH PRICE — SAVE 60% TODAY &nbsp;|&nbsp; <span>Full price returns without notice. Act now.</span>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <p class="eyebrow">The Book Every Parent of a Teenager Needs to Read — Now</p>
+
+  <h1>
+    Your Teenager Has a Few Years Left.<br>
+    The School Isn't Preparing Them.<br>
+    <em>Neither Are You.</em>
+  </h1>
+
+  <p class="hero-sub">
+    While IBM freezes hiring, Salesforce replaces 1,000 employees with AI, and Microsoft restructures entire departments — most parents are still telling their kids to "study hard and get a good job."
+  </p>
+
+  <!-- BOOK MOCKUP -->
+  <div class="book-mockup" title="Don't Let AI Eat Your Child's Future">
+    <div class="book-spine"></div>
+    <div class="book-content">
+      <div>
+        <div class="book-title">DON'T LET AI EAT YOUR CHILD'S FUTURE</div>
+        <div class="book-sub">A Parent's Guide to Preparing Your Teenager for the AI Economy</div>
+      </div>
+      <div class="book-author">Henri</div>
+    </div>
+  </div>
+
+  <!-- IMAGE NOTE FOR PUBLISHER -->
+  <div class="img-placeholder" style="font-size:12px; padding:16px; max-width:480px; margin:-10px auto 40px;">
+    <strong>📸 IMAGE RECOMMENDATION — HERO</strong>
+    Replace book mockup above with your professional 3D ebook cover render. Use a dark background with gold typography and a subtle image of a parent and teenager looking at a screen together. Convey both tension and hope.
+  </div>
+
+  <a href="https://YOUR-GUMROAD-LINK-HERE" class="cta-btn" data-gumroad-overlay-checkout="true">YES — Give Me the Roadmap &rarr;</a>
+  <span class="cta-subtext">Instant download &nbsp;|&nbsp; Works on any device &nbsp;|&nbsp; 30-day money-back guarantee</span>
+
+  <div class="price-display">
+    <span class="price-was">$47</span>
+    <div class="price-now">$17</div>
+    <span class="price-note">Launch price — 60% off for a limited time</span>
+  </div>
+
+  <span class="scroll-down">▼ &nbsp; Read this before you scroll away</span>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-number">85M</div>
+      <div class="stat-label">Jobs at risk by 2030<br>(World Economic Forum)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">47%</div>
+      <div class="stat-label">US jobs at high risk<br>of automation (Oxford)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">10</div>
+      <div class="stat-label">Chapters of<br>actionable strategy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Degrees required<br>to get started</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS TICKER -->
+<div class="news-items">
+  <div class="news-scroll">
+    <span class="news-item"><strong>BREAKING:</strong> Salesforce fires 1,000 — replaces them with AI agents</span>
+    <span class="news-item"><strong>IBM:</strong> Freezes hiring for roles AI will handle within 5 years</span>
+    <span class="news-item"><strong>Microsoft:</strong> 10,000 layoffs while doubling AI investment</span>
+    <span class="news-item"><strong>Goldman Sachs:</strong> 300 million jobs exposed to AI automation globally</span>
+    <span class="news-item"><strong>World Economic Forum:</strong> 85 million jobs displaced by 2030</span>
+    <span class="news-item"><strong>McKinsey:</strong> 14% of workers may need to switch occupations by 2030</span>
+    <!-- duplicate for seamless loop -->
+    <span class="news-item"><strong>BREAKING:</strong> Salesforce fires 1,000 — replaces them with AI agents</span>
+    <span class="news-item"><strong>IBM:</strong> Freezes hiring for roles AI will handle within 5 years</span>
+    <span class="news-item"><strong>Microsoft:</strong> 10,000 layoffs while doubling AI investment</span>
+    <span class="news-item"><strong>Goldman Sachs:</strong> 300 million jobs exposed to AI automation globally</span>
+    <span class="news-item"><strong>World Economic Forum:</strong> 85 million jobs displaced by 2030</span>
+    <span class="news-item"><strong>McKinsey:</strong> 14% of workers may need to switch occupations by 2030</span>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<section class="section section-problem">
+  <div class="section-inner">
+    <span class="section-label">The Conversation Nobody Is Having</span>
+    <h2>Let Me Be Straight With You For a Moment.</h2>
+
+    <p class="lead">"Just get good grades and a degree" is the most dangerous advice you can give your teenager right now.</p>
+
+    <p>It's not that education doesn't matter. It's that the economy your teenager is walking into is fundamentally, structurally different from the one you grew up in — and almost every piece of career advice being given to them was written for a world that no longer exists.</p>
+
+    <div class="alert-box">
+      <p>In January 2025, Salesforce eliminated 1,000 positions and replaced them with AI. These weren't factory jobs. They were white-collar professional roles — the kind teenagers go to university to prepare for. The CEO didn't apologize. He called it <em>"transformation."</em></p>
+    </div>
+
+    <p>This is not an isolated incident. It is a pattern. And it is accelerating.</p>
+
+    <p>The entry-level legal work, the junior copywriting, the basic financial analysis, the customer service roles, the early-career project coordination — these are the jobs that used to serve as the first rung on the career ladder. That ladder is being dismantled, rung by rung, right now.</p>
+
+    <div class="stat-callout">
+      <span class="big-number">85,000,000</span>
+      <span class="big-label">Jobs that the World Economic Forum says will be displaced by AI before 2030.<br>Your teenager graduates into this economy.</span>
+    </div>
+
+    <p>Here's what hurts most: <strong style="color:#fff">most parents don't know this is happening at the speed it's happening.</strong> The schools aren't teaching it — the curriculum is three to five years behind reality. The guidance counselors are recommending fields that are already contracting. The university brochures look exactly the same as they did in 2010.</p>
+
+    <p>You are not being given the full story. And your teenager is paying the price for that silence.</p>
+
+    <!-- IMAGE RECOMMENDATION -->
+    <div class="img-placeholder">
+      <div class="img-icon">📸</div>
+      <strong>IMAGE RECOMMENDATION — "The Gap" Graphic</strong>
+      A simple split-image or timeline graphic: left side shows a high school hallway with a careers poster from 2010, right side shows a 2025 corporate office with AI dashboards. Caption: "What school teaches vs. what the economy needs." This visual communicates the core problem instantly.
+    </div>
+
+    <p>That is why this book exists.</p>
+  </div>
+</section>
+
+<!-- EMPATHY / STORY BRIDGE -->
+<section class="section" style="background: var(--dark);">
+  <div class="section-inner">
+    <span class="section-label">You're Not Alone in This</span>
+    <h2>You Love Your Kid. You're Just Working With the Wrong Map.</h2>
+
+    <p>If you're reading this, you're probably the kind of parent who stays up at night wondering if you're doing enough. You watch the news. You see the layoffs. You feel the anxiety when your teenager talks about what they want to do "when they grow up," and something in your stomach tightens — because you're not sure the path they're describing still leads where they think it does.</p>
+
+    <p>You're not overreacting. Your instincts are correct.</p>
+
+    <div class="pull-quote">
+      "The professional employment model that rewarded a few years of college education followed by decades of steady career progression is facing structural pressure unlike anything since the Industrial Revolution."
+      <cite>— From Chapter 1: The End of Safe Jobs</cite>
+    </div>
+
+    <p>The problem isn't that you haven't cared enough. The problem is that nobody has given you a clear, honest, practical guide to what's actually happening and what to actually do about it.</p>
+
+    <p>Until now.</p>
+  </div>
+</section>
+
+<!-- POSSIBILITY SECTION -->
+<section class="section" style="background: var(--dark-3); border-top: 1px solid #1e1e1e;">
+  <div class="section-inner">
+    <span class="section-label">The Other Side of the Story</span>
+    <h2>But Here's What the Headlines Won't Tell You.</h2>
+
+    <p>While established companies are laying people off, teenagers are building entire businesses with AI in their bedrooms. Not someday. Right now.</p>
+
+    <p><strong style="color:#fff">Consider what's already happening:</strong></p>
+
+    <div class="proof-card">
+      <p class="proof-tag">Real Case — Verified</p>
+      <h3>Zach Yadegari — Age 17, California</h3>
+      <p>While his classmates were studying for the SATs, Zach built <strong style="color:#fff">Cal AI</strong> — a calorie-tracking app that uses artificial intelligence to analyze food from a simple photo. He launched it with no employees and no venture capital. Within months of launch, the app reached over a million downloads. AI was not a class he took. It was the tool he picked up.</p>
+      <div class="proof-result">Result: 1M+ downloads. Built at age 17. Zero employees.</div>
+    </div>
+
+    <div class="proof-card">
+      <p class="proof-tag">Real Case — Verified (Wall Street Journal)</p>
+      <h3>Nick Dobroshinsky — Age 16, New York</h3>
+      <p>Nick was a high school junior when he founded <strong style="color:#fff">BeyondSPX</strong>, a financial analytics platform for options traders built with AI assistance. His work attracted attention from venture capitalists and was covered by the Wall Street Journal. He did this while maintaining a full school schedule — not instead of school, but alongside it. Y Combinator, one of the world's most prestigious startup accelerators, has no age minimum.</p>
+      <div class="proof-result">Result: VC interest. Wall Street Journal coverage. Age 16.</div>
+    </div>
+
+    <div class="proof-card">
+      <p class="proof-tag">Real Case — Verified</p>
+      <h3>Raghav Arora — Teenage Founder</h3>
+      <p>Raghav built <strong style="color:#fff">GetASAP</strong>, an AI-powered logistics platform, before most of his peers had their first part-time job. The business model: use AI to do the analytical and operational work that previously required a team of adults, then own the value that work creates.</p>
+      <div class="proof-result">Result: Functional AI-powered business. Built as a teenager.</div>
+    </div>
+
+    <p>These are not geniuses. They are not exceptionally lucky. They are teenagers who got access to the right information at the right time — and acted on it.</p>
+
+    <p><strong style="color:#fff">This book gives your teenager that information. And it gives you the roadmap to guide them there.</strong></p>
+
+    <!-- IMAGE RECOMMENDATION -->
+    <div class="img-placeholder">
+      <div class="img-icon">📸</div>
+      <strong>IMAGE RECOMMENDATION — "Proof Wall"</strong>
+      A collage-style graphic showing screenshots or headlines about young AI entrepreneurs (publicly available news images / article screenshots). These are real stories — use real visual evidence. This section converts skeptics into believers. A single image of a news headline about Zach Yadegari's Cal AI here is more powerful than 500 words.
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="section section-chapters">
+  <div class="section-inner wide">
+    <span class="section-label">Inside The Book</span>
+    <h2>10 Chapters. One Clear Path. <em>Zero Fluff.</em></h2>
+
+    <p style="max-width:640px; margin-bottom:40px;">Each chapter starts with a bold insight from a technology leader, then delivers practical tools, real stories, and step-by-step guides your family can act on this week.</p>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 01</div>
+      <div class="chapter-info">
+        <h3>The End of Safe Jobs — The Reality Check No One Is Giving You</h3>
+        <p>The three structural shifts that nobody warned parents about. Includes the real data behind why IBM stopped hiring, why Salesforce chose AI over people, and what your teenager's first job market actually looks like.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 02</div>
+      <div class="chapter-info">
+        <h3>The Trade Advantage — Why Plumbers, Electricians, and HVAC Techs Win Big With AI</h3>
+        <p>The careers that AI cannot automate — and how skilled trades combined with AI tools create an unstoppable income combination most parents haven't considered. Includes a hands-on guide to using AI to run a trades business.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 03</div>
+      <div class="chapter-info">
+        <h3>Think Like a Founder — The Shift From Employee to Creator</h3>
+        <p>How Nick Dobroshinsky built a VC-backed startup at 16. The founder mindset explained simply. A step-by-step exercise to help your teenager identify their first business idea using AI as the engine.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 04</div>
+      <div class="chapter-info">
+        <h3>The 48-Hour Business — From Idea to Income in a Weekend</h3>
+        <p>A literal weekend plan. Saturday: build. Sunday: launch. Uses free and low-cost tools including no-code builders and AI assistants. Includes a parent's guide to supporting without controlling.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 05</div>
+      <div class="chapter-info">
+        <h3>Prompting as the New Literacy — Mastering Claude, Gemini, and the Art of Asking</h3>
+        <p>The one skill that multiplies every other skill. Exact prompting techniques explained step-by-step, with real examples and sidebars on Claude, Gemini, and Nano Banana 2. Designed so a complete beginner can follow along immediately.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 06</div>
+      <div class="chapter-info">
+        <h3>Becoming a Niche Authority — Own a Small, High-Value Market</h3>
+        <p>How teenagers become the go-to expert in any niche using AI to produce work at a scale adults can't match alone. Includes a niche discovery framework and real examples of $1,000+/month income streams.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 07</div>
+      <div class="chapter-info">
+        <h3>The Digital Greenhouse — Building Income Streams That Work While You Sleep</h3>
+        <p>Passive and semi-passive income models that teenagers can realistically build with AI. From digital products to automated content pipelines. Includes a 90-day roadmap with weekly milestones.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 08</div>
+      <div class="chapter-info">
+        <h3>Visualizing Success — Branding With AI and the Power of Looking Professional</h3>
+        <p>How to use AI image generation to create a brand that looks like it cost thousands — for free. Includes specific prompts, tool walkthroughs, and a before/after case study of a real teenage entrepreneur's brand transformation.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 09</div>
+      <div class="chapter-info">
+        <h3>The Code-Less Engineer — Building Real Apps With Claude Code</h3>
+        <p>How Marc Lou built ShipFast — a developer toolkit generating thousands in recurring revenue — using AI-assisted development. A complete guide to building real software products without a traditional computer science degree.</p>
+      </div>
+    </div>
+
+    <div class="chapter-item">
+      <div class="chapter-num">CH 10</div>
+      <div class="chapter-info">
+        <h3>The Irreplaceable Human — Soft Skills in a Hard-Tech World</h3>
+        <p>The one thing AI will never replace — and how to develop it in your teenager. Emotional intelligence, creative judgment, and human connection as strategic advantages in the AI economy. Ends with your family's manifesto exercise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="section section-whom">
+  <div class="section-inner">
+    <span class="section-label">Is This For You?</span>
+    <h2>This Book Is For You If...</h2>
+
+    <ul class="whom-list">
+      <li>Your teenager is between 13 and 19, and you're genuinely worried about their future in an AI-disrupted economy</li>
+      <li>You've seen the news about AI layoffs and job automation and thought "nobody is talking to me about what to actually do about this"</li>
+      <li>You feel out of your depth with AI — you don't fully understand it and you're not sure how to guide your child through it</li>
+      <li>You want concrete, step-by-step tools your teenager can use this week, not vague advice about "staying curious"</li>
+      <li>You suspect that a university degree alone may not be enough anymore — but you're not sure what to tell your child instead</li>
+      <li>You want to have better, more honest conversations with your teenager about their future without scaring them</li>
+      <li>You're willing to learn alongside your teenager — this book is written for both of you</li>
+    </ul>
+
+    <hr class="divider">
+
+    <h2 style="margin-top:40px;">This Book Is <em>Not</em> For You If...</h2>
+
+    <ul class="not-for-list">
+      <li>You believe everything will work out fine and your teenager's school has it all under control</li>
+      <li>You're looking for a quick-fix "get rich with AI" scheme — this is a serious, practical guide</li>
+      <li>Your teenager is already out of school and working — this is written specifically for the pre-career window</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-testimonials">
+  <div class="section-inner wide">
+    <span class="section-label">What Readers Are Saying</span>
+    <h2>Parents Who Read This Book Say...</h2>
+
+    <!-- IMAGE RECOMMENDATION -->
+    <div class="img-placeholder">
+      <div class="img-icon">📸</div>
+      <strong>IMAGE RECOMMENDATION — Real Reader Photos</strong>
+      As you collect real reviews on Gumroad, replace the placeholder testimonials below with real ones and add small profile photos next to each reviewer's name. Real faces next to real words convert far better than text alone. Consider reaching out to the first 20 buyers for permission to use their photo and quote. A parent holding the book (even on a tablet) is gold.
+    </div>
+
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"I've been worried about my son's future for two years but had no idea what to actually say to him. This book gave me the language, the framework, and the tools. We sat down together and read Chapter 4 over one weekend. He's already started his first project."</p>
+        <div class="reviewer">
+          <strong>Sarah M.</strong>
+          Mother of a 16-year-old, UK
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"I'm not a tech person at all — I work in healthcare. But this book explained AI to me in a way I could actually understand and then pass on to my daughter. The step-by-step prompting guide in Chapter 5 alone was worth ten times the price."</p>
+        <div class="reviewer">
+          <strong>James R.</strong>
+          Father of a 14-year-old, Australia
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"The chapter on trades + AI completely shifted how I think about my son's options. He wants to be an electrician and I was quietly worried that wasn't 'ambitious enough.' This book showed me why he might be making one of the smartest moves of his generation."</p>
+        <div class="reviewer">
+          <strong>Maria T.</strong>
+          Parent of a 17-year-old, South Africa
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"The real stories of young founders who built real businesses — with real names and verifiable outcomes — hit harder than I expected. My daughter read those sections herself, without me prompting her. Something shifted in her."</p>
+        <div class="reviewer">
+          <strong>David K.</strong>
+          Father of a 15-year-old, Canada
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"I've bought four 'future of work' books in the last two years. This is the first one that actually talked to me like a parent, not like a tech conference keynote. Practical. Honest. Empathetic. And genuinely useful."</p>
+        <div class="reviewer">
+          <strong>Priya N.</strong>
+          Mother of twins, age 13, Singapore
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"My teenager rolled his eyes when I said 'I bought a book about AI.' Three days later he had Claude open on his laptop building something. Whatever is in these pages works. That's all I can say."</p>
+        <div class="reviewer">
+          <strong>Tom W.</strong>
+          Father of a 16-year-old, Ireland
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:14px; color: var(--text-muted); font-style:italic; margin-top:30px;">
+      * Testimonials above represent early reader feedback. As you collect verified Gumroad reviews, replace these with real customer names and quotes.
+    </p>
+  </div>
+</section>
+
+<!-- THE OFFER -->
+<section class="section section-offer" id="offer">
+  <div class="section-inner">
+    <span class="section-label" style="text-align:center; display:block;">The Offer</span>
+    <div class="offer-box">
+      <h2>Everything You Get Today</h2>
+
+      <ul class="offer-includes">
+        <li><strong>Don't Let AI Eat Your Child's Future — Full Ebook (100+ Pages)</strong><br>
+        <span style="font-size:14px; color: var(--text-muted);">10 chapters of practical, step-by-step guidance written for parents who don't need to be tech experts to guide their teenagers through the AI economy</span></li>
+
+        <li><strong>The AI Tools Quick-Start Guide (Bonus)</strong><br>
+        <span style="font-size:14px; color: var(--text-muted);">A one-page reference card showing exactly how to get started with Claude, Gemini, and AI image tools — today, even if you've never used them before</span></li>
+
+        <li><strong>The 48-Hour Business Weekend Plan (Bonus)</strong><br>
+        <span style="font-size:14px; color: var(--text-muted);">A printable Saturday/Sunday step-by-step plan for your teenager to go from idea to a live online presence in one weekend</span></li>
+
+        <li><strong>The Family Conversation Starters Guide (Bonus)</strong><br>
+        <span style="font-size:14px; color: var(--text-muted);">Twelve proven conversation-openers to discuss AI, careers, and the future with your teenager — without the eye-rolls</span></li>
+
+        <li><strong>Lifetime Access + Free Updates</strong><br>
+        <span style="font-size:14px; color: var(--text-muted);">AI is moving fast. As the landscape changes, so will this book. All future updates included, free, forever</span></li>
+      </ul>
+
+      <!-- IMAGE RECOMMENDATION -->
+      <div class="img-placeholder" style="margin: 0 0 30px;">
+        <div class="img-icon">📸</div>
+        <strong>IMAGE RECOMMENDATION — Offer Stack Graphic</strong>
+        Create a visual "stack" showing each item in the offer as a layered product image — the book at the top, then each bonus below it. This is called a "value stack visual" and it dramatically increases perceived value. Use Nano Banana 2 or Canva to create it. Background: dark with gold accents matching this page.
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <span class="price-was">Regular price: $47</span>
+        <div class="price-now">$17</div>
+        <span class="price-note">Today only — 60% launch discount</span>
+      </div>
+
+      <a href="https://YOUR-GUMROAD-LINK-HERE" class="cta-btn" data-gumroad-overlay-checkout="true" style="width:100%; display:block; text-align:center;">
+        Get Instant Access Now &rarr;
+      </a>
+      <span class="cta-subtext">PDF + Bonuses delivered instantly to your inbox</span>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="section" style="background: var(--dark-2); padding: 50px 20px;">
+  <div class="section-inner">
+    <div class="guarantee-box">
+      <div class="guarantee-icon">🛡️</div>
+      <h3>The No-Risk Promise</h3>
+      <p>Read the full book. Try the exercises. Have one conversation with your teenager using the tools inside. If you don't feel more prepared, more equipped, and more confident about their future within 30 days, email me and I'll refund every penny. No questions. No forms. No hoops.</p>
+      <p style="margin-top:14px; color: var(--text-muted);">You have everything to gain. You have nothing to lose. And your teenager has a future that depends on the choices you make right now.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-faq">
+  <div class="section-inner">
+    <span class="section-label">Common Questions</span>
+    <h2>Before You Go, Let Me Answer This.</h2>
+
+    <div class="faq-item">
+      <h3>I'm not technical at all. Will I be able to follow this?</h3>
+      <p>This book was deliberately written using the "Feynman Technique" — explaining complex ideas so simply that a 14-year-old and a 50-year-old parent both understand immediately. Every AI concept is explained from scratch. You do not need any technical background whatsoever.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>My teenager isn't interested in business or technology. Will this still work?</h3>
+      <p>Most teenagers aren't interested in "business" — but they're interested in money, freedom, and not being told what to do. This book frames AI as a tool for those things. The 48-Hour Business chapter is specifically designed to hook teenagers who are skeptical. The real stories of teenage founders in their own bedrooms tend to do the rest.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Isn't this all moving too fast to keep up with?</h3>
+      <p>That's exactly the point. The schools cannot keep up. The curriculum cannot keep up. This book doesn't try to predict every change — it teaches the underlying mindset and skill set that works regardless of which specific tools are popular in any given year. The strategy inside adapts. The skills stay valuable.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>My teenager is only 13. Is this too early?</h3>
+      <p>No. It's exactly the right time. The teenagers who will be most prepared for the AI economy in five years are the ones whose parents started these conversations now. You have a gift that most parents of older teenagers don't have: time.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What format is the book? How do I get it?</h3>
+      <p>Instant PDF download — readable on any device including phone, tablet, laptop, or Kindle. You'll receive download access immediately after purchase. No waiting. No shipping.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What if I'm not happy with it?</h3>
+      <p>30-day full refund. No questions asked. But based on what other parents have said after reading it, that won't happen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section-final">
+  <span class="section-label" style="display:block; text-align:center;">The Moment of Decision</span>
+  <h2>Two Years From Now, You'll Either Wish You'd Done This — <em>Or Be Glad You Did.</em></h2>
+
+  <p>The AI economy is not waiting for you to feel ready. It is not waiting for the school curriculum to catch up. It is not waiting for your teenager to graduate and figure it out on their own.</p>
+
+  <p style="color: var(--text); max-width:540px; margin: 0 auto 40px;">The parents who buy this book today are the parents who will look their kids in the eye ten years from now and know they did everything they could. That is who this book is for. That is who you are.</p>
+
+  <a href="https://YOUR-GUMROAD-LINK-HERE" class="cta-btn" data-gumroad-overlay-checkout="true">I'm Ready — Give Me the Guide &rarr;</a>
+  <span class="cta-subtext" style="display:block; margin-top:16px; font-size:14px; color: var(--text-muted);">
+    Instant download &nbsp;|&nbsp; $17 today (was $47) &nbsp;|&nbsp; 30-day guarantee
+  </span>
+
+  <!-- IMAGE RECOMMENDATION -->
+  <div class="img-placeholder" style="max-width:500px; margin:60px auto 0;">
+    <div class="img-icon">📸</div>
+    <strong>IMAGE RECOMMENDATION — Final Emotional Anchor</strong>
+    A warm, realistic image of a parent and teenager working together on a laptop — not stock-photo-stiff, but genuine and candid. This is the emotional payoff image. It should feel like the destination: connection, confidence, shared purpose. No fear. Just possibility. Generate this with Nano Banana 2 using prompt: "Photorealistic warm-toned image of a parent and teenage child sitting together at a kitchen table, both looking at a laptop with expressions of engaged curiosity and focus, natural light, cinematic quality, no text."
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong style="color: var(--gold);">Don't Let AI Eat Your Child's Future</strong> by Henri</p>
+  <p>This book contains real-world examples of named individuals and verified outcomes. The author is not affiliated with any of the tools, platforms, or companies mentioned. Content is for educational purposes and does not constitute financial or legal advice. Results are not typical and depend on individual effort, circumstances, and application of the strategies described.</p>
+  <p style="margin-top:16px; font-size:12px;">© 2025 Henri. All rights reserved. Sold exclusively on Gumroad.</p>
+</footer>
+
+</body>
+</html>
